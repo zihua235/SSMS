@@ -1,0 +1,16 @@
+print(hi)
+print('hi')
+relative_abundance <- curatedMetagenomicData("DavidLA_2015.relative_abundance", dryrun = FALSE) |>#
+    mergeData()
+library(uratedMetagenomicData)
+library(curatedMetagenomicData)
+library(dplyr)
+relative_abundance <- curatedMetagenomicData("DavidLA_2015.relative_abundance", dryrun = FALSE) |>#
+    mergeData()
+str(relative_abundance)
+mpa_relative_abundance <- as.matrix(relative_abundance@assays@data@relative_abundance)
+mpa_relative_abundance <- as.matrix(relative_abundance@assays@data@listData$gene_families)
+mpa_relative_abundance <- as.matrix(relative_abundance@assays@data@listData$relative_abundance)
+str(mpa_relative_abundance)
+write.table(mpa_relative_abundance, file = "/Users/zihuahuang/Desktop/relative_abundance.tsv", #
+            row.names = TRUE, col.names = TRUE, sep="\t", quote=FALSE)
