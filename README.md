@@ -43,8 +43,6 @@ The scripts in this repository are organized according to the main analysis work
    Finally, use the R scripts and Jupyter notebooks for downstream comparison, evaluation, and visualization. This step is used to assess the performance of the imputation workflow and to compare different methods, networks, or parameter settings.
 
 ## evaluation of the imputation pipeline
-
-to do
 randomized_network.ipynb
 
 This notebook is used to analyze the effect of network structure. It helps test whether the observed performance depends on meaningful functional associations or could also arise from randomized network relationships.
@@ -59,7 +57,15 @@ Typical questions addressed by this notebook include:
 to do
 
 ## Example use case
-to do 
+input:
+* /path/your_ssms.tsv
+* /path/your_mgs.tsv
+* /path/your_adj_matrix.txt
+
+output:
+* /path/your_imputed_ssms.tsv
+
+python pipeline.py --ssms /path/your_ssms.tsv --mgs /path/your_mgs.tsvc --adj /path/your_adj_matrix.txt --output /path/your_imputed_ssms.tsv
 
 ## Prerequisites
 Linux:
