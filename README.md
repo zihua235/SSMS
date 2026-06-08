@@ -68,8 +68,6 @@ output:
 python pipeline.py --ssms /path/your_ssms.tsv --mgs /path/your_mgs.tsvc --adj /path/your_adj_matrix.txt --output /path/your_imputed_ssms.tsv
 
 ## Prerequisites
-Linux:
-
 R:
 
 Python:
