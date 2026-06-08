@@ -104,40 +104,36 @@ python pipeline.py --ssms /path/your_ssms.tsv --mgs /path/your_mgs.tsvc --adj /p
 ## Prerequisites
 R Prerequisites
 R >= 4.0
-Required R packages:
-dplyr
-ggplot2
-stringr
-Matrix
-igraph
-pheatmap
-scales
-proxy
-ggVennDiagram
-reshape2
-Rfast
-infotheo
-mclust
-boot
-ComplexHeatmap
-NetCoMi
-SpiecEasi
-GENIE3
+* Required R packages:
+* dplyr
+* ggplot2
+* stringr
+* Matrix
+* igraph
+* pheatmap
+* scales
+* proxy
+* ggVennDiagram
+* reshape2
+* Rfast
+* infotheo
+* mclust
+* boot
+* ComplexHeatmap
+* NetCoMi
+* SpiecEasi
+* GENIE3
 
-Python >= 3.7
+* Python >= 3.7
 Required Python packages:
-numpy
-pandas
-scikit-learn
-scipy
-matplotlib
-joblib
-tqdm
-networkx
-powerlaw
-torch
-pytorch-lightning
-jupyter
+* numpy
+* pandas
+* scikit-learn
+* scipy
+* matplotlib
+* joblib
+* tqdm
+
 
 ## Cite 
 If you use or mention this method in your research, please cite:
