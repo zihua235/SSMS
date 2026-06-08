@@ -54,7 +54,41 @@ Typical questions addressed by this notebook include:
 * Is the network-guided result better than a random-network baseline?
 
 ## Conceptual inputation workflow
-to do
+Input matrices
+The workflow uses three feature-by-sample matrices:
+
+adj_matrix: EC-EC adjacency matrix describing which ECs are associated with each other.
+ssms: shallow shotgun metagenomic sequencing profile, where rows are EC features and columns are samples.
+mgs: reference metagenomic sequencing profile, also with EC features as rows and samples as columns.
+Feature alignment
+The EC features are first aligned across the adjacency matrix, SSMS matrix, and MGS matrix. Only ECs shared by all required inputs are retained, ensuring that the network, SSMS data, and MGS reference data use the same feature space.
+
+Neighbor selection for each target EC
+For each EC feature, the function identifies its connected neighbors from the adjacency matrix. These neighbors are treated as informative correlated ECs that can help predict the abundance of the target EC.
+
+Model training using MGS reference data
+For each target EC, a regression model is trained on the MGS dataset:
+
+Predictors: abundances of the neighboring ECs in MGS samples.
+Response: abundance of the target EC in MGS samples.
+The model can be either:
+
+Random Forest regression (RF)
+Linear Regression (LR)
+Preserve observed SSMS values
+For each SSMS sample, if the target EC already has a positive observed abundance, the original SSMS value is kept unchanged. The model only attempts to impute values that are zero or absent.
+
+Filtering before imputation
+Before predicting a missing value, two filters are applied:
+
+Target prevalence filter: the target EC must be present in at least 10% of MGS reference samples.
+Neighbor support filter: enough neighboring ECs must be observed in the SSMS sample, requiring at least 20% of neighbors and at least one neighbor to be present.
+If either filter fails, the target EC is assigned zero for that sample.
+
+Imputation of missing EC values
+If the target EC passes the filters, the observed neighboring EC abundances in the SSMS sample are used as model input. The trained MGS-based regression model then predicts the missing abundance of the target EC.
+
+
 
 ## Example use case
 input:
@@ -68,9 +102,42 @@ output:
 python pipeline.py --ssms /path/your_ssms.tsv --mgs /path/your_mgs.tsvc --adj /path/your_adj_matrix.txt --output /path/your_imputed_ssms.tsv
 
 ## Prerequisites
-R:
+R Prerequisites
+R >= 4.0
+Required R packages:
+dplyr
+ggplot2
+stringr
+Matrix
+igraph
+pheatmap
+scales
+proxy
+ggVennDiagram
+reshape2
+Rfast
+infotheo
+mclust
+boot
+ComplexHeatmap
+NetCoMi
+SpiecEasi
+GENIE3
 
-Python:
+Python >= 3.7
+Required Python packages:
+numpy
+pandas
+scikit-learn
+scipy
+matplotlib
+joblib
+tqdm
+networkx
+powerlaw
+torch
+pytorch-lightning
+jupyter
 
 ## Cite 
 If you use or mention this method in your research, please cite:
